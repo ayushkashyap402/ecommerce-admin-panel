@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --muted: #64748b;
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* MUI overrides for consistency */
+.MuiDataGrid-root {
+  border-radius: 12px !important;
+  border: 1px solid var(--border) !important;
+}
+.MuiDataGrid-columnHeaders {
+  background: #f8fafc !important;
+  font-weight: 600 !important;
+}
+.MuiDataGrid-cell {
+  border-color: var(--border) !important;
+}

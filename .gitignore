@@ -1,0 +1,103 @@
+# ========================================
+# Admin Panel (React/Vite) - .gitignore
+# ========================================
+
+# ==================== CRITICAL SECURITY ====================
+# Environment Variables - NEVER COMMIT
+.env
+.env.local
+.env.production
+.env.development
+.env.test
+.env.example
+
+# ==================== Dependencies ====================
+node_modules/
+.pnp
+.pnp.js
+
+# ==================== Build Output ====================
+dist/
+build/
+.vite/
+
+# ==================== Logs ====================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# ==================== Testing ====================
+coverage/
+.nyc_output/
+*.lcov
+
+# ==================== IDE ====================
+# VSCode
+.vscode/
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains
+.idea/
+*.iml
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ==================== OS ====================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# ==================== Temporary Files ====================
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.cache/
+tmp/
+temp/
+
+# ==================== Vite ====================
+.vite/
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# ==================== Optional ====================
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Misc
+.eslintcache
