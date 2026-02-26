@@ -6,7 +6,7 @@ export const AuthLayout = ({ children }) => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: 'linear-gradient(135deg, #16A085 0%, #138D75 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

@@ -79,7 +79,7 @@ const AdminViewLayout = ({ adminInfo }) => {
         position="fixed" 
         sx={{ 
           zIndex: (theme) => theme.zIndex.drawer + 1,
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #16A085 0%, #138D75 100%)',
           boxShadow: '0 4px 20px 0 rgba(0,0,0,0.1)',
         }}
       >
@@ -196,18 +196,18 @@ const AdminViewLayout = ({ adminInfo }) => {
                     sx={{
                       borderRadius: 2,
                       mb: 0.5,
-                      bgcolor: active ? 'rgba(102, 126, 234, 0.1)' : 'transparent',
-                      color: active ? '#667eea' : 'text.primary',
+                      bgcolor: active ? 'rgba(22, 160, 133, 0.1)' : 'transparent',
+                      color: active ? '#16A085' : 'text.primary',
                       justifyContent: isDrawerExpanded ? 'initial' : 'center',
                       px: isDrawerExpanded ? 2 : 1.5,
                       '&:hover': {
-                        bgcolor: active ? 'rgba(102, 126, 234, 0.15)' : 'rgba(0,0,0,0.04)',
+                        bgcolor: active ? 'rgba(22, 160, 133, 0.15)' : 'rgba(0,0,0,0.04)',
                       },
                       transition: 'all 0.2s',
                     }}
                   >
                     <ListItemIcon sx={{ 
-                      color: active ? '#667eea' : 'text.secondary',
+                      color: active ? '#16A085' : 'text.secondary',
                       minWidth: isDrawerExpanded ? 40 : 'auto',
                       justifyContent: 'center',
                     }}>

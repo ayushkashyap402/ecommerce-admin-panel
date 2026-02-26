@@ -89,7 +89,7 @@ export const LoginPage = () => {
         sx={{
           width: { xs: '100%', md: '50%' },
           height: { xs: '40vh', md: '100vh' },
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #16A085 0%, #138D75 100%)',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -220,15 +220,15 @@ export const LoginPage = () => {
                     borderColor: '#e5e7eb',
                   },
                   '&:hover fieldset': {
-                    borderColor: '#667eea',
+                    borderColor: '#16A085',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#667eea',
+                    borderColor: '#16A085',
                     borderWidth: '2px',
                   },
                 },
                 '& .MuiInputLabel-root.Mui-focused': {
-                  color: '#667eea',
+                  color: '#16A085',
                 },
               }}
             />
@@ -266,15 +266,15 @@ export const LoginPage = () => {
                     borderColor: '#e5e7eb',
                   },
                   '&:hover fieldset': {
-                    borderColor: '#667eea',
+                    borderColor: '#16A085',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#667eea',
+                    borderColor: '#16A085',
                     borderWidth: '2px',
                   },
                 },
                 '& .MuiInputLabel-root.Mui-focused': {
-                  color: '#667eea',
+                  color: '#16A085',
                 },
               }}
             />
@@ -287,9 +287,9 @@ export const LoginPage = () => {
                   onChange={(e) => setRememberMe(e.target.checked)}
                   disabled={loading}
                   sx={{
-                    color: '#667eea',
+                    color: '#16A085',
                     '&.Mui-checked': {
-                      color: '#667eea',
+                      color: '#16A085',
                     },
                   }}
                 />
@@ -315,19 +315,19 @@ export const LoginPage = () => {
                 fontWeight: 600,
                 textTransform: 'none',
                 borderRadius: '12px',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)',
+                background: 'linear-gradient(135deg, #16A085 0%, #138D75 100%)',
+                boxShadow: '0 4px 15px rgba(22, 160, 133, 0.4)',
                 transition: 'all 0.3s ease',
                 '&:hover': {
-                  background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
-                  boxShadow: '0 6px 20px rgba(102, 126, 234, 0.6)',
+                  background: 'linear-gradient(135deg, #138D75 0%, #16A085 100%)',
+                  boxShadow: '0 6px 20px rgba(22, 160, 133, 0.6)',
                   transform: 'translateY(-2px)',
                 },
                 '&:active': {
                   transform: 'translateY(0)',
                 },
                 '&:disabled': {
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  background: 'linear-gradient(135deg, #16A085 0%, #138D75 100%)',
                   opacity: 0.6,
                 },
               }}

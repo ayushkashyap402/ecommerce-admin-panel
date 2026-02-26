@@ -80,7 +80,7 @@ export const MainLayout = () => {
         position="fixed" 
         sx={{ 
           zIndex: (theme) => theme.zIndex.drawer + 1,
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #16A085 0%, #138D75 100%)',
           boxShadow: '0 4px 20px 0 rgba(0,0,0,0.1)',
         }}
       >
@@ -196,18 +196,18 @@ export const MainLayout = () => {
                     sx={{
                       borderRadius: 2,
                       mb: 0.5,
-                      bgcolor: isActive ? 'rgba(102, 126, 234, 0.1)' : 'transparent',
-                      color: isActive ? '#667eea' : 'text.primary',
+                      bgcolor: isActive ? 'rgba(22, 160, 133, 0.1)' : 'transparent',
+                      color: isActive ? '#16A085' : 'text.primary',
                       justifyContent: isDrawerExpanded ? 'initial' : 'center',
                       px: isDrawerExpanded ? 2 : 1.5,
                       '&:hover': {
-                        bgcolor: isActive ? 'rgba(102, 126, 234, 0.15)' : 'rgba(0,0,0,0.04)',
+                        bgcolor: isActive ? 'rgba(22, 160, 133, 0.15)' : 'rgba(0,0,0,0.04)',
                       },
                       transition: 'all 0.2s',
                     }}
                   >
                     <ListItemIcon sx={{ 
-                      color: isActive ? '#667eea' : 'text.secondary',
+                      color: isActive ? '#16A085' : 'text.secondary',
                       minWidth: isDrawerExpanded ? 40 : 'auto',
                       justifyContent: 'center',
                     }}>
@@ -255,18 +255,18 @@ export const MainLayout = () => {
                         sx={{
                           borderRadius: 2,
                           mb: 0.5,
-                          bgcolor: isActive ? 'rgba(102, 126, 234, 0.1)' : 'transparent',
-                          color: isActive ? '#667eea' : 'text.primary',
+                          bgcolor: isActive ? 'rgba(22, 160, 133, 0.1)' : 'transparent',
+                          color: isActive ? '#16A085' : 'text.primary',
                           justifyContent: isDrawerExpanded ? 'initial' : 'center',
                           px: isDrawerExpanded ? 2 : 1.5,
                           '&:hover': {
-                            bgcolor: isActive ? 'rgba(102, 126, 234, 0.15)' : 'rgba(0,0,0,0.04)',
+                            bgcolor: isActive ? 'rgba(22, 160, 133, 0.15)' : 'rgba(0,0,0,0.04)',
                           },
                           transition: 'all 0.2s',
                         }}
                       >
                         <ListItemIcon sx={{ 
-                          color: isActive ? '#667eea' : 'text.secondary',
+                          color: isActive ? '#16A085' : 'text.secondary',
                           minWidth: isDrawerExpanded ? 40 : 'auto',
                           justifyContent: 'center',
                         }}>

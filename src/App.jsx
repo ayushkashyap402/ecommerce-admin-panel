@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Provider, useDispatch } from 'react-redux';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { store } from './store';
 import { useAppSelector } from './store/hooks';
 import { ErrorBoundary } from './utils/errorHandler';
@@ -12,6 +13,38 @@ import { setAuth, logout } from './store/slices/authSlice';
 // Import role-specific pages
 import * as AdminPages from './pages/admin';
 import * as SuperAdminPages from './pages/superadmin';
+
+// Create custom theme with green colors matching mobile app
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#16A085',
+      dark: '#138D75',
+      light: '#48C9B0',
+      contrastText: '#FFFFFF',
+    },
+    secondary: {
+      main: '#48C9B0',
+      dark: '#16A085',
+      light: '#76D7C4',
+    },
+    success: {
+      main: '#10B981',
+    },
+    error: {
+      main: '#EF4444',
+    },
+    warning: {
+      main: '#F59E0B',
+    },
+    info: {
+      main: '#3B82F6',
+    },
+  },
+  typography: {
+    fontFamily: 'Plus Jakarta Sans, system-ui, sans-serif',
+  },
+});
 
 // Helper to get cookie
 function getCookie(name) {
@@ -196,7 +229,9 @@ export default function App() {
   return (
     <ErrorBoundary>
       <Provider store={store}>
-        <AppContent />
+        <ThemeProvider theme={theme}>
+          <AppContent />
+        </ThemeProvider>
       </Provider>
     </ErrorBoundary>
   );
