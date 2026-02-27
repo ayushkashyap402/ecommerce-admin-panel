@@ -6,7 +6,7 @@ export const AuthLayout = ({ children }) => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #16A085 0%, #138D75 100%)',
+        background: 'linear-gradient(135deg, #00bd7d 0%, #00a56d 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -21,9 +21,19 @@ export const AuthLayout = ({ children }) => {
           }}
         >
           <Box sx={{ textAlign: 'center', mb: 3 }}>
-            <Typography variant="h4" component="h1" gutterBottom color="primary">
-              OutfitGo Admin
-            </Typography>
+            <Box
+              component="img"
+              src="/assets/logo.png"
+              alt="OutfitGo Admin"
+              sx={{
+                height: 60,
+                width: 'auto',
+                objectFit: 'contain',
+                mb: 2,
+                mx: 'auto',
+                display: 'block'
+              }}
+            />
             <Typography variant="body2" color="text.secondary">
               Management Dashboard
             </Typography>

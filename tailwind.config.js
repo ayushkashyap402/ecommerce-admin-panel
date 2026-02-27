@@ -8,15 +8,15 @@ export default {
       },
       colors: {
         accent: {
-          DEFAULT: '#16A085',
-          hover: '#138D75',
+          DEFAULT: '#00bd7d',
+          hover: '#00a56d',
           light: '#E0F2F1',
-          dark: '#0E6655',
+          dark: '#008c5e',
         },
         primary: {
-          DEFAULT: '#16A085',
-          dark: '#138D75',
-          light: '#48C9B0',
+          DEFAULT: '#00bd7d',
+          dark: '#00a56d',
+          light: '#33ca96',
         },
         success: '#10B981',
         error: '#EF4444',

@@ -129,7 +129,7 @@ export const AdminAutoLogin = () => {
 
       // Redirect to dashboard
       setTimeout(() => {
-        navigate('/', { replace: true });
+        navigate('/dashboard', { replace: true });
       }, 500);
 
     } catch (error) {

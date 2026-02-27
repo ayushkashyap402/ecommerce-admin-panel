@@ -240,7 +240,7 @@ export default function ReturnsPage() {
             <Zoom in timeout={300}>
               <Card
                 sx={{
-                  background: 'linear-gradient(135deg, #16A085 0%, #138D75 100%)',
+                  background: 'linear-gradient(135deg, #00bd7d 0%, #00a56d 100%)',
                   color: 'white',
                   transition: 'transform 0.3s',
                   '&:hover': { transform: 'translateY(-4px)' },
@@ -361,7 +361,7 @@ export default function ReturnsPage() {
             disableRowSelectionOnClick
             sx={{
               '& .MuiDataGrid-row:hover': {
-                backgroundColor: 'rgba(22, 160, 133, 0.08)',
+                backgroundColor: 'rgba(0, 189, 125, 0.08)',
               },
             }}
           />
@@ -377,7 +377,7 @@ export default function ReturnsPage() {
       >
         <DialogTitle
           sx={{
-            background: 'linear-gradient(135deg, #16A085 0%, #138D75 100%)',
+            background: 'linear-gradient(135deg, #00bd7d 0%, #00a56d 100%)',
             color: 'white',
           }}
         >

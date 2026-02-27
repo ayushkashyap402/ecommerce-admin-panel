@@ -6,6 +6,7 @@ import { store } from './store';
 import { useAppSelector } from './store/hooks';
 import { ErrorBoundary } from './utils/errorHandler';
 import { MainLayout } from './components/layout/MainLayout';
+import { LandingPage } from './pages/LandingPage';
 import { LoginPage } from './pages/LoginPage';
 import { AdminAutoLogin } from './pages/AdminAutoLogin';
 import { setAuth, logout } from './store/slices/authSlice';
@@ -18,15 +19,15 @@ import * as SuperAdminPages from './pages/superadmin';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#16A085',
-      dark: '#138D75',
-      light: '#48C9B0',
+      main: '#00bd7d',
+      dark: '#00a56d',
+      light: '#33ca96',
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#48C9B0',
-      dark: '#16A085',
-      light: '#76D7C4',
+      main: '#33ca96',
+      dark: '#00bd7d',
+      light: '#66d4ab',
     },
     success: {
       main: '#10B981',
@@ -77,7 +78,7 @@ function SuperAdminRoute({ children }) {
   const { token, role } = useAppSelector((s) => s.auth);
   if (!token) return <Navigate to="/login" replace />;
   if (role !== 'superadmin') {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
   return children;
 }
@@ -139,10 +140,11 @@ function AppContent() {
 
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/admin-login" element={<AdminAutoLogin />} />
       <Route
-        path="/"
+        path="/dashboard"
         element={
           <PrivateRoute>
             <MainLayout />
@@ -210,6 +212,16 @@ function AppContent() {
           }
         />
         <Route
+          path="customers"
+          element={
+            <SuperAdminRoute>
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <SuperAdminPages.CustomersPage />
+              </React.Suspense>
+            </SuperAdminRoute>
+          }
+        />
+        <Route
           path="admin-view/:adminId/*"
           element={
             <SuperAdminRoute>
@@ -219,7 +231,7 @@ function AppContent() {
             </SuperAdminRoute>
           }
         />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Route>
     </Routes>
   );

@@ -58,7 +58,7 @@ export const LoginPage = () => {
         role: response.user?.role,
       }));
 
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       handleError(err, { component: 'LoginPage', action: 'login' });
     }
@@ -89,7 +89,7 @@ export const LoginPage = () => {
         sx={{
           width: { xs: '100%', md: '50%' },
           height: { xs: '40vh', md: '100vh' },
-          background: 'linear-gradient(135deg, #16A085 0%, #138D75 100%)',
+          background: 'linear-gradient(135deg, #00bd7d 0%, #00a56d 100%)',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -100,35 +100,19 @@ export const LoginPage = () => {
           flexShrink: 0,
         }}
       >
-        {/* Logo Icon */}
+        {/* Logo */}
         <Box
+          component="img"
+          src="/assets/logo.png"
+          alt="OutfitGo"
           sx={{
-            width: 100,
-            height: 100,
-            borderRadius: '24px',
-            background: 'rgba(255, 255, 255, 0.2)',
-            backdropFilter: 'blur(10px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            height: { xs: 100, md: 140 },
+            width: 'auto',
+            objectFit: 'contain',
             mb: 4,
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+            filter: 'brightness(0) invert(1)'
           }}
-        >
-          <ShoppingBag sx={{ fontSize: 50, color: 'white' }} />
-        </Box>
-
-        {/* Heading */}
-        <Typography
-          variant="h2"
-          sx={{
-            fontWeight: 700,
-            mb: 3,
-            fontSize: { xs: '2rem', md: '3rem' },
-          }}
-        >
-          Hello OutfitGo!
-        </Typography>
+        />
 
         {/* Description */}
         <Typography
@@ -170,15 +154,30 @@ export const LoginPage = () => {
           }}
         >
           {/* Form Header */}
+          <Box
+            component="img"
+            src="/assets/logo.png"
+            alt="OutfitGo Admin"
+            sx={{
+              height: 70,
+              width: 'auto',
+              objectFit: 'contain',
+              mb: 2,
+              mx: 'auto',
+              display: 'block'
+            }}
+          />
+
           <Typography
-            variant="h4"
+            variant="h5"
             sx={{
               fontWeight: 700,
-              color: '#1a1a1a',
+              color: '#111827',
               mb: 1,
+              textAlign: 'center'
             }}
           >
-            OutfitGo Admin
+            Welcome Back
           </Typography>
 
           <Typography
@@ -186,6 +185,7 @@ export const LoginPage = () => {
             sx={{
               color: '#6b7280',
               mb: 4,
+              textAlign: 'center'
             }}
           >
             Sign in to access your dashboard
@@ -220,15 +220,15 @@ export const LoginPage = () => {
                     borderColor: '#e5e7eb',
                   },
                   '&:hover fieldset': {
-                    borderColor: '#16A085',
+                    borderColor: '#00bd7d',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#16A085',
+                    borderColor: '#00bd7d',
                     borderWidth: '2px',
                   },
                 },
                 '& .MuiInputLabel-root.Mui-focused': {
-                  color: '#16A085',
+                  color: '#00bd7d',
                 },
               }}
             />
@@ -266,15 +266,15 @@ export const LoginPage = () => {
                     borderColor: '#e5e7eb',
                   },
                   '&:hover fieldset': {
-                    borderColor: '#16A085',
+                    borderColor: '#00bd7d',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#16A085',
+                    borderColor: '#00bd7d',
                     borderWidth: '2px',
                   },
                 },
                 '& .MuiInputLabel-root.Mui-focused': {
-                  color: '#16A085',
+                  color: '#00bd7d',
                 },
               }}
             />
@@ -287,9 +287,9 @@ export const LoginPage = () => {
                   onChange={(e) => setRememberMe(e.target.checked)}
                   disabled={loading}
                   sx={{
-                    color: '#16A085',
+                    color: '#00bd7d',
                     '&.Mui-checked': {
-                      color: '#16A085',
+                      color: '#00bd7d',
                     },
                   }}
                 />
@@ -315,19 +315,19 @@ export const LoginPage = () => {
                 fontWeight: 600,
                 textTransform: 'none',
                 borderRadius: '12px',
-                background: 'linear-gradient(135deg, #16A085 0%, #138D75 100%)',
-                boxShadow: '0 4px 15px rgba(22, 160, 133, 0.4)',
+                background: 'linear-gradient(135deg, #00bd7d 0%, #00a56d 100%)',
+                boxShadow: '0 4px 15px rgba(0, 189, 125, 0.4)',
                 transition: 'all 0.3s ease',
                 '&:hover': {
-                  background: 'linear-gradient(135deg, #138D75 0%, #16A085 100%)',
-                  boxShadow: '0 6px 20px rgba(22, 160, 133, 0.6)',
+                  background: 'linear-gradient(135deg, #00a56d 0%, #00bd7d 100%)',
+                  boxShadow: '0 6px 20px rgba(0, 189, 125, 0.6)',
                   transform: 'translateY(-2px)',
                 },
                 '&:active': {
                   transform: 'translateY(0)',
                 },
                 '&:disabled': {
-                  background: 'linear-gradient(135deg, #16A085 0%, #138D75 100%)',
+                  background: 'linear-gradient(135deg, #00bd7d 0%, #00a56d 100%)',
                   opacity: 0.6,
                 },
               }}
@@ -342,7 +342,7 @@ export const LoginPage = () => {
             {/* Footer */}
             <Box sx={{ mt: 4, textAlign: 'center' }}>
               <Typography variant="body2" color="text.secondary">
-                © 2024 OutfitGo. All rights reserved.
+                © 2024 <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 600 }}>OutfitGo</span>. All rights reserved.
               </Typography>
             </Box>
           </Box>

@@ -1,11 +1,14 @@
+/* Import Outfit font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --accent: #16A085;
-  --accent-hover: #138D75;
-  --accent-light: #48C9B0;
+  --accent: #00bd7d;
+  --accent-hover: #00a56d;
+  --accent-light: #33ca96;
   --surface: #ffffff;
   --background: #F3F4F6;
   --border: #E5E7EB;
@@ -21,6 +24,16 @@ body {
   margin: 0;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Outfit font for branding/logo - EXACT MATCH */
+.logo-font,
+.brand-font,
+.outfit-font {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  text-transform: none !important;
 }
 
 /* MUI overrides for consistency */

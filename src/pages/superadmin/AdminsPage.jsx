@@ -271,13 +271,13 @@ export const AdminsPage = () => {
   return (
     <Box>
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
-        <Typography variant="h4">Admin Management</Typography>
+        <Typography variant="h4">Seller Management</Typography>
         <Button
           variant="contained"
           startIcon={<Add />}
           onClick={() => setDialogOpen(true)}
         >
-          Add Admin
+          Add Seller
         </Button>
       </Box>
 
