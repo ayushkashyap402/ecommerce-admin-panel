@@ -68,8 +68,7 @@ export const ProductsPageNew = () => {
   // Debug: Log products to see what data we're getting
   useEffect(() => {
     if (products && products.length > 0) {
-      console.log('🔍 [Products Page] Products data:', products);
-      console.log('🔍 [Products Page] First product:', products[0]);
+      // Products loaded successfully
     }
   }, [products]);
 
