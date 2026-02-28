@@ -39,4 +39,7 @@ export const orderService = {
     const queryString = new URLSearchParams(params).toString();
     return api.get(`/orders/superadmin/all?${queryString}`);
   },
+  
+  // Analytics
+  getPlatformAnalytics: () => api.get('/orders/analytics/platform'),
 };

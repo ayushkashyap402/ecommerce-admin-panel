@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Card,
@@ -16,12 +17,6 @@ import {
   TextField,
   InputAdornment,
   Avatar,
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Grid,
   CircularProgress
 } from '@mui/material';
 import {
@@ -29,22 +24,18 @@ import {
   Refresh,
   Block,
   CheckCircle,
-  Visibility,
-  Email,
-  Phone,
-  LocationOn
+  Visibility
 } from '@mui/icons-material';
 import { userService } from '../../services/userService';
 
 export const CustomersPage = () => {
+  const navigate = useNavigate();
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [totalCustomers, setTotalCustomers] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCustomer, setSelectedCustomer] = useState(null);
-  const [detailsOpen, setDetailsOpen] = useState(false);
 
   useEffect(() => {
     fetchCustomers();
@@ -82,14 +73,8 @@ export const CustomersPage = () => {
     setPage(0);
   };
 
-  const handleViewDetails = async (customerId) => {
-    try {
-      const customer = await userService.getUserById(customerId);
-      setSelectedCustomer(customer);
-      setDetailsOpen(true);
-    } catch (error) {
-      console.error('Error fetching customer details:', error);
-    }
+  const handleViewDetails = (customerId) => {
+    navigate(`/dashboard/customers/${customerId}`);
   };
 
   const handleToggleStatus = async (customerId, currentStatus) => {
@@ -281,100 +266,6 @@ export const CustomersPage = () => {
           )}
         </CardContent>
       </Card>
-
-      {/* Customer Details Dialog */}
-      <Dialog
-        open={detailsOpen}
-        onClose={() => setDetailsOpen(false)}
-        maxWidth="md"
-        fullWidth
-        PaperProps={{
-          sx: {
-            borderRadius: 3
-          }
-        }}
-      >
-        <DialogTitle sx={{ borderBottom: '1px solid #E5E7EB', pb: 2 }}>
-          <Typography variant="h6" fontWeight={600}>
-            Customer Details
-          </Typography>
-        </DialogTitle>
-        <DialogContent sx={{ mt: 3 }}>
-          {selectedCustomer && (
-            <Grid container spacing={3}>
-              <Grid item xs={12} display="flex" justifyContent="center">
-                <Avatar
-                  sx={{
-                    bgcolor: '#00bd7d',
-                    width: 80,
-                    height: 80,
-                    fontSize: '2rem',
-                    fontWeight: 600
-                  }}
-                >
-                  {getInitials(selectedCustomer.name)}
-                </Avatar>
-              </Grid>
-              <Grid item xs={12}>
-                <Box display="flex" alignItems="center" gap={1} mb={2}>
-                  <Email sx={{ color: '#6B7280' }} />
-                  <Box>
-                    <Typography variant="caption" color="text.secondary">Email</Typography>
-                    <Typography variant="body1" fontWeight={500}>{selectedCustomer.email}</Typography>
-                  </Box>
-                </Box>
-                <Box display="flex" alignItems="center" gap={1} mb={2}>
-                  <Phone sx={{ color: '#6B7280' }} />
-                  <Box>
-                    <Typography variant="caption" color="text.secondary">Phone</Typography>
-                    <Typography variant="body1" fontWeight={500}>{selectedCustomer.phone || 'N/A'}</Typography>
-                  </Box>
-                </Box>
-                <Box display="flex" alignItems="center" gap={1} mb={2}>
-                  <LocationOn sx={{ color: '#6B7280' }} />
-                  <Box>
-                    <Typography variant="caption" color="text.secondary">Address</Typography>
-                    <Typography variant="body1" fontWeight={500}>
-                      {selectedCustomer.addresses?.length > 0 
-                        ? `${selectedCustomer.addresses[0].city}, ${selectedCustomer.addresses[0].state}`
-                        : 'No address added'}
-                    </Typography>
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="caption" color="text.secondary">Status</Typography>
-                <Typography variant="body1" fontWeight={500}>
-                  <Chip
-                    label={selectedCustomer.isActive ? 'Active' : 'Inactive'}
-                    size="small"
-                    sx={{
-                      backgroundColor: selectedCustomer.isActive ? '#D1FAE5' : '#FEE2E2',
-                      color: selectedCustomer.isActive ? '#065F46' : '#991B1B',
-                      fontWeight: 600
-                    }}
-                  />
-                </Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="caption" color="text.secondary">Member Since</Typography>
-                <Typography variant="body1" fontWeight={500}>
-                  {new Date(selectedCustomer.createdAt).toLocaleDateString('en-US', {
-                    day: '2-digit',
-                    month: 'long',
-                    year: 'numeric'
-                  })}
-                </Typography>
-              </Grid>
-            </Grid>
-          )}
-        </DialogContent>
-        <DialogActions sx={{ borderTop: '1px solid #E5E7EB', p: 2 }}>
-          <Button onClick={() => setDetailsOpen(false)} sx={{ color: '#6B7280' }}>
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
     </Box>
   );
 };

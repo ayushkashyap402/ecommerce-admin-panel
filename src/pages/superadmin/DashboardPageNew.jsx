@@ -59,6 +59,7 @@ export const SuperAdminDashboardPage = () => {
   const [userActivityData, setUserActivityData] = useState([]);
   const [recentOrders, setRecentOrders] = useState([]);
   const [topProducts, setTopProducts] = useState([]);
+  const [salesByCountry, setSalesByCountry] = useState([]);
 
   useEffect(() => {
     fetchDashboardData();
@@ -75,14 +76,16 @@ export const SuperAdminDashboardPage = () => {
         ordersRes, 
         lowStockRes,
         platformStatsRes,
-        topProductsRes
+        topProductsRes,
+        platformAnalyticsRes
       ] = await Promise.allSettled([
         orderService.getOrderStats(),
         productService.getProductStats(),
         orderService.getOrders({ limit: 10, sort: '-createdAt' }),
         productService.getLowStockProducts(),
         userService.getPlatformStats(),
-        productService.getTopSellingProducts()
+        productService.getTopSellingProducts(),
+        orderService.getPlatformAnalytics()
       ]);
 
       // Process order stats
@@ -92,6 +95,7 @@ export const SuperAdminDashboardPage = () => {
       const lowStockData = lowStockRes.status === 'fulfilled' ? lowStockRes.value : [];
       const platformStats = platformStatsRes.status === 'fulfilled' ? platformStatsRes.value : {};
       const topProductsData = topProductsRes.status === 'fulfilled' ? topProductsRes.value : [];
+      const platformAnalytics = platformAnalyticsRes.status === 'fulfilled' ? platformAnalyticsRes.value : {};
 
       // Calculate stats from REAL backend data
       const totalOrders = orderStats.totalOrders || orderStats.total || 0;
@@ -173,6 +177,11 @@ export const SuperAdminDashboardPage = () => {
         setTopProducts(topProductsData.slice(0, 3));
       } else if (productStats.topProducts && Array.isArray(productStats.topProducts)) {
         setTopProducts(productStats.topProducts.slice(0, 3));
+      }
+
+      // Set sales by country - REAL DATA FROM BACKEND
+      if (platformAnalytics.salesByCountry && Array.isArray(platformAnalytics.salesByCountry)) {
+        setSalesByCountry(platformAnalytics.salesByCountry.slice(0, 3));
       }
 
     } catch (error) {
@@ -586,41 +595,68 @@ export const SuperAdminDashboardPage = () => {
                   </Box>
                   
                   <Box display="flex" flexDirection="column" gap={2}>
-                    {[
-                      { country: 'USA', flag: '🇺🇸', percentage: 30, growth: 25.8, color: '#5b6ad0' },
-                      { country: 'Brazil', flag: '🇧🇷', percentage: 30, growth: -8.8, color: '#5b6ad0' },
-                      { country: 'Australia', flag: '🇦🇺', percentage: 25, growth: 18.2, color: '#5b6ad0' }
-                    ].map((item, index) => (
-                      <Box key={index}>
-                        <Box display="flex" justifyContent="space-between" alignItems="center" mb={0.5}>
-                          <Box display="flex" alignItems="center" gap={1}>
-                            <Typography fontSize="1.2rem">{item.flag}</Typography>
-                            <Typography variant="body2" fontWeight={500}>{item.percentage}k</Typography>
-                            <Typography variant="caption" color="text.secondary">{item.country}</Typography>
+                    {salesByCountry.length > 0 ? (
+                      salesByCountry.map((item, index) => {
+                        // Country flag mapping
+                        const countryFlags = {
+                          'India': '🇮🇳',
+                          'USA': '🇺🇸',
+                          'United States': '🇺🇸',
+                          'Brazil': '🇧🇷',
+                          'Australia': '🇦🇺',
+                          'UK': '🇬🇧',
+                          'United Kingdom': '🇬🇧',
+                          'Canada': '🇨🇦',
+                          'Germany': '🇩🇪',
+                          'France': '🇫🇷',
+                          'Japan': '🇯🇵',
+                          'China': '🇨🇳'
+                        };
+                        
+                        const flag = countryFlags[item.country] || '🌍';
+                        const salesInK = (item.totalSales / 1000).toFixed(0);
+                        const maxSales = Math.max(...salesByCountry.map(c => c.totalSales));
+                        const percentage = (item.totalSales / maxSales) * 100;
+                        
+                        return (
+                          <Box key={index}>
+                            <Box display="flex" justifyContent="space-between" alignItems="center" mb={0.5}>
+                              <Box display="flex" alignItems="center" gap={1}>
+                                <Typography fontSize="1.2rem">{flag}</Typography>
+                                <Typography variant="body2" fontWeight={500}>₹{salesInK}k</Typography>
+                                <Typography variant="caption" color="text.secondary">{item.country}</Typography>
+                              </Box>
+                              <Typography
+                                variant="caption"
+                                color={item.growth > 0 ? 'success.main' : 'error.main'}
+                                fontWeight={600}
+                              >
+                                {item.growth > 0 ? '+' : ''}{item.growth}%
+                              </Typography>
+                            </Box>
+                            <LinearProgress
+                              variant="determinate"
+                              value={percentage}
+                              sx={{
+                                height: 6,
+                                borderRadius: 3,
+                                backgroundColor: '#f0f0f0',
+                                '& .MuiLinearProgress-bar': {
+                                  backgroundColor: '#5b6ad0',
+                                  borderRadius: 3
+                                }
+                              }}
+                            />
                           </Box>
-                          <Typography
-                            variant="caption"
-                            color={item.growth > 0 ? 'success.main' : 'error.main'}
-                            fontWeight={600}
-                          >
-                            {item.growth > 0 ? '+' : ''}{item.growth}%
-                          </Typography>
-                        </Box>
-                        <LinearProgress
-                          variant="determinate"
-                          value={item.percentage * 3}
-                          sx={{
-                            height: 6,
-                            borderRadius: 3,
-                            backgroundColor: '#f0f0f0',
-                            '& .MuiLinearProgress-bar': {
-                              backgroundColor: item.color,
-                              borderRadius: 3
-                            }
-                          }}
-                        />
+                        );
+                      })
+                    ) : (
+                      <Box textAlign="center" py={2}>
+                        <Typography variant="body2" color="text.secondary">
+                          No sales data available
+                        </Typography>
                       </Box>
-                    ))}
+                    )}
                   </Box>
                   
                   <Button

@@ -222,6 +222,16 @@ function AppContent() {
           }
         />
         <Route
+          path="customers/:customerId"
+          element={
+            <SuperAdminRoute>
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <SuperAdminPages.CustomerViewPage />
+              </React.Suspense>
+            </SuperAdminRoute>
+          }
+        />
+        <Route
           path="admin-view/:adminId/*"
           element={
             <SuperAdminRoute>

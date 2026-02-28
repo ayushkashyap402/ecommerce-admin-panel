@@ -6,3 +6,4 @@ export { AnalyticsPage } from './AnalyticsPage';
 export { AdminsPage } from './AdminsPage';
 export { AdminViewPage } from './AdminViewPage';
 export { CustomersPage } from './CustomersPage';
+export { CustomerViewPage } from './CustomerViewPage';

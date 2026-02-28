@@ -113,7 +113,14 @@ export const ProductsPageNew = () => {
     const files = Array.from(e.target.files);
     if (files.length === 0) return;
 
-    const validation = validateImageFiles(files, 10);
+    // Limit to 5 images
+    if (files.length > 5) {
+      alert('Maximum 5 images allowed per product');
+      e.target.value = '';
+      return;
+    }
+
+    const validation = validateImageFiles(files, 5);
     if (!validation.valid) {
       alert('Image validation failed:\n' + validation.errors.join('\n'));
       e.target.value = '';
@@ -463,7 +470,7 @@ export const ProductsPageNew = () => {
                     fontWeight={600}
                     sx={{
                       color: '#111827',
-                      mb: 1,
+                      mb: 0.5,
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap',
@@ -471,6 +478,18 @@ export const ProductsPageNew = () => {
                     }}
                   >
                     {product.name}
+                  </Typography>
+
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: '#00bd7d',
+                      fontWeight: 600,
+                      mb: 1,
+                      display: 'block'
+                    }}
+                  >
+                    SKU: {product.sku || 'N/A'}
                   </Typography>
 
                   <Typography
@@ -639,6 +658,13 @@ export const ProductsPageNew = () => {
                 <Grid item xs={12}>
                   <Typography variant="caption" color="text.secondary">Product Name</Typography>
                   <Typography variant="h6" fontWeight={600}>{selectedProduct.name}</Typography>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Typography variant="caption" color="text.secondary">SKU Code</Typography>
+                  <Typography variant="body1" fontWeight={600} sx={{ color: '#00bd7d' }}>
+                    {selectedProduct.sku || 'N/A'}
+                  </Typography>
                 </Grid>
 
                 <Grid item xs={12}>
